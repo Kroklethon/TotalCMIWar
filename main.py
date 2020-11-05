@@ -1,23 +1,20 @@
 import pygame
-import functions
+import main_var
+import functions 
 import sys 
 sys.path.insert(1, '/gen_terrain')
 pygame.init()
 
-size = width, height = 900, 900
-speed = [1,1]
-black = 0, 0, 0
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(main_var.size)
 background = pygame.image.load("carte_couleur.png")
 
 def drawGrid():
-    white =(255,255,255)
     blockSize = 30 #Set the size of the grid block
-    for x in range(width):
-        for y in range(height):
+    for x in range(main_var.width):
+        for y in range(main_var.height):
             rect = pygame.Rect(x*blockSize, y*blockSize,
                                blockSize, blockSize)
-            pygame.draw.rect(screen, white, rect, 1)
+            pygame.draw.rect(screen, main_var.white, rect, 1)
 
 while 1:
     for event in pygame.event.get():
