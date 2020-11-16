@@ -2,10 +2,12 @@ import pygame
 import main_var
 import functions 
 import sys 
-sys.path.insert(1, '/gen_terrain')
+sys.path.insert(1, 'gen_terrain')
 pygame.init()
-
+seed = functions.get_seed()
+functions.get_map_image(seed)
 screen = pygame.display.set_mode(main_var.size)
+
 background = pygame.image.load("carte_couleur.png")
 
 def drawGrid():
