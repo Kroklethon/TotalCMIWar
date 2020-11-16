@@ -14,7 +14,7 @@ def create_noise_map(seed):
     return t,shape,seed
 
 def get_map_image(seed):
-    map_2D.func_map_color_perlin(main_var.shape,main_var.scale,main_var.octaves,main_var.persistence,main_var.lacunarity,seed,main_var.name,main_var.hauteur_ocean,main_var.facteur_denivele,main_var.couleur_option)
+    map_2D.func_map_color_perlin(shape=(900,900),scale=50.0,octaves=5, persistence=0.5,lacunarity=2.0,seed=0,name='carte_couleur.png',hauteur_ocean=0,facteur_denivele=0.1,couleur_option='Réaliste')
     print("Map créée")
 
 def drawGrid():
