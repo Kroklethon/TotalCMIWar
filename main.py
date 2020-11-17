@@ -4,6 +4,7 @@ import main_var
 import sys 
 import boutton
 import interraction
+import functions
 ###################################importation###############################################################
 
 
@@ -13,7 +14,8 @@ var_lance_jeu = True
 
 sys.path.insert(var_pour_gen, '/gen_terrain')
 pygame.init()
-#seed = functions.get_seed()
+seed = functions.get_seed()
+functions.get_map_image(seed)
 screen = pygame.display.set_mode(main_var.size)
 
 background = pygame.image.load("carte_couleur.png")
@@ -49,21 +51,14 @@ def cree_table():
     #####cration variable ######
     tableau = [[dico] * tailleligne] * tailletab
     return tableau 
-'''
+
 def drawGrid():
     blockSize = 30 #Set the size of the grid block
     for x in range(main_var.width):
         for y in range(main_var.height):
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
             pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
-            #creecase(var_pour_gen, x, y, tableau_jeu, rect)
-            '''
-def drawGrid():
-    blockSize = 30
-    for x in range(30):
-        for y in range(30):
-            rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
-            creecase(var_pour_gen, x, y, tableau_jeu, rect)
+
 ###################################code def jeu##############################################################
 
 
@@ -79,7 +74,7 @@ print (tableau_jeu[4][5])
 print(tableau_jeu[1][6])
 ######################provisoire pour la v1#################################
 #bouton de test qui serivra plus tard a passer son tour#########################
-boutonfintour = boutton.button((0,255,0), 600, 600, 200, 80, 'passer son tour')#
+#boutonfintour = boutton.button((0,255,0), 600, 600, 200, 80, 'passer son tour')#
 #boutonfintour.draw(screen ,(0,0,0))                                            #
 #bouton de test qui serivra plus tard a passer son tour#########################
 tourjoueur1 = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
@@ -92,6 +87,7 @@ while var_lance_jeu == True:
             sys.exit()
 
         position = pygame.mouse.get_pos()
+        pos_grid = functions.get_pos_grid(position)
 
         #######################test pour le passer son tour#####################
 
