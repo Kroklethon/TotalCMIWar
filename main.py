@@ -1,10 +1,9 @@
 ###################################importation###############################################################
 import pygame
 import main_var
-import functions 
 import sys 
 import boutton
-import interaction
+import interraction
 ###################################importation###############################################################
 
 
@@ -14,7 +13,7 @@ var_lance_jeu = True
 
 sys.path.insert(var_pour_gen, '/gen_terrain')
 pygame.init()
-seed = functions.get_seed()
+#seed = functions.get_seed()
 screen = pygame.display.set_mode(main_var.size)
 
 background = pygame.image.load("carte_couleur.png")
@@ -22,6 +21,18 @@ background = pygame.image.load("carte_couleur.png")
 
 
 ###################################code def jeu##############################################################
+def creecase(var_pour_gen, posx, posy,tableau, rectangle):
+	case_tabl = tableau[posx][posy]
+	rect=rectangle
+	if case_tabl['statue'] == 'montagne' :
+		pygame.draw.rect(screen, main_var.montagne, rect, var_pour_gen)
+	elif case_tabl['statue'] == 'joueur_1':
+		pygame.draw.rect(screen, main_var.joueur_1, rect, var_pour_gen)
+	elif case_tabl['statue'] == 'joueur_2':
+		pygame.draw.rect(screen, main_var.joueur_2, rect, var_pour_gen)
+	else:
+		pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
+
 def cree_table():
     """
     entree: rien
@@ -29,31 +40,47 @@ def cree_table():
 
     crée le tableau vide correspondant au case du tableau
     """
+    tailletab = 30
+    tailleligne = 30
     #####cration variable ######
-    tableau = []*main_var.width #TABLEAU ->
+    tableau = []                   #TABLEAU ->
     dico = {}                      #DICTIONNAIRE 
-    dico["statue"] = "vide"        #statue vide (case vide)
+    dico['statue'] = 'vide'        #statue vide (case vide)
     #####cration variable ######
-    for i in range(main_var.width):
-        tableau[i] = [dico]*main_var.height          
+    tableau = [[dico] * tailleligne] * tailletab
     return tableau 
-
+'''
 def drawGrid():
     blockSize = 30 #Set the size of the grid block
     for x in range(main_var.width):
         for y in range(main_var.height):
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
-            functions.creercase(var_pour_gen, x, y)
+            pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
+            #creecase(var_pour_gen, x, y, tableau_jeu, rect)
+            '''
+def drawGrid():
+    blockSize = 30
+    for x in range(30):
+        for y in range(30):
+            rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
+            creecase(var_pour_gen, x, y, tableau_jeu, rect)
 ###################################code def jeu##############################################################
 
 
 
 ###################################lanceur de jeu############################################################
 tableau_jeu = cree_table()
-
+######################ici on crée des perso et une montagne#################
+###joueur 1
+tableau_jeu[3][6]['statue'] = 'joueur_1'
+###joueur 2         
+tableau_jeu[4][5]['statue'] = 'joueur_2'
+print (tableau_jeu[4][5])
+print(tableau_jeu[1][6])
+######################provisoire pour la v1#################################
 #bouton de test qui serivra plus tard a passer son tour#########################
-boutonfintour = boutton.button((0,255,0), 600, 600, 200, 80, "passer son tour")#
-boutonfintour.draw(screen ,(0,0,0))                                            #
+boutonfintour = boutton.button((0,255,0), 600, 600, 200, 80, 'passer son tour')#
+#boutonfintour.draw(screen ,(0,0,0))                                            #
 #bouton de test qui serivra plus tard a passer son tour#########################
 tourjoueur1 = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
 dragj1 = False
@@ -68,19 +95,19 @@ while var_lance_jeu == True:
 
         #######################test pour le passer son tour#####################
 
-        if event.type == pygame.MOUSEBUTTONDOWN: # test si on clique sur le bouton et passe le tour
-            if boutonfintour.isover(position):
-                if tourjoueur1 == True:
-                    tourjoueur1 = False
-                else:
-                    tourjoueur1 = True
-                print("tour passer")#provisoire
+        #if event.type == pygame.MOUSEBUTTONDOWN: # test si on clique sur le bouton et passe le tour
+            #if boutonfintour.isover(position):
+            #    if tourjoueur1 == True:
+            #        tourjoueur1 = False
+            #    else:
+            #        tourjoueur1 = True
+            #    print("tour passer")#provisoire
 
-        if event.type == pygame.MOUSEMOTION: # test si la sourie est dessus le bouton et change la couleur
-            if boutonfintour.isover(position):
-                boutonfintour.color = (255,255,255)
-            else:
-                boutonfintour.color = (255,0,0)
+        #if event.type == pygame.MOUSEMOTION: # test si la sourie est dessus le bouton et change la couleur
+            #if boutonfintour.isover(position):
+            #    boutonfintour.color = (255,255,255)
+            #else:
+            #    boutonfintour.color = (255,0,0)
 
         #######################test pour le passer son tour#####################
 
@@ -104,20 +131,7 @@ while var_lance_jeu == True:
 
     screen.blit(background,(0,0))
     
-    ######################ici on crée des perso et une montagne#################
-    ###joueur 1
-    a = {}
-    a["statue"] = "joueur_1"
-    tableau_jeu[3][5] = a
-    ###joueur 2         
-    a = {}
-    a["statue"] = "joueur_2"
-    tableau_jeu[5][5] = a
-    ###montagne
-    a = {}
-    a["statue"] = "montagne"
-    tableau_jeu[4][4] = a
-    ######################provisoire pour la v1#################################
+
     drawGrid()   
     pygame.display.update()
 
