@@ -16,7 +16,7 @@ class Personne(object):
     def dansPlateau(x, y):
         return x >= XMIN and x <= XMAX and y >= YMIN and Y <= YMAX
     
-    def position(self):
+    def position_random(self):
         self.posx=random.randint(XMIN, XMAX)
         self.posy=random.randint(YMIN, YMAX)
     def get_pos(self):

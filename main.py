@@ -54,8 +54,8 @@ def cree_table():
 
 def drawGrid():
     blockSize = 30 #Set the size of the grid block
-    for x in range(main_var.width):
-        for y in range(main_var.height):
+    for x in range(blockSize):
+        for y in range(blockSize):
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
             pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
 
