@@ -2,3 +2,7 @@
 __pycache__/main_var.cpython-38.pyc
 __pycache__/functions.cpython-38.pyc
 __pycache__/boutton.cpython-38.pyc
+__pycache__/interraction.cpython-38.pyc
+gen_terrain/__pycache__/algorithmes.cpython-38.pyc
+gen_terrain/__pycache__/map_2D.cpython-38.pyc
+gen_terrain/__pycache__/outils.cpython-38.pyc

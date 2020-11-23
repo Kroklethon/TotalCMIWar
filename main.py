@@ -88,6 +88,7 @@ while var_lance_jeu == True:
 
         position = pygame.mouse.get_pos()
         pos_grid = functions.get_pos_grid(position)
+        print(pos_grid)
 
         #######################test pour le passer son tour#####################
 
