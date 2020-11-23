@@ -22,7 +22,7 @@ def get_seed():
 
 def create_noise_map(seed):
     t, shape, seed = algorithmes.func_noise_map(main_var.shape,main_var.scale,main_var.octaves,main_var.persistence,main_var.lacunarity,seed,main_var.facteur_denivele)
-    return t,shape,seed
+    return t,shape
 
 def get_map_image(seed):
     map_2D.func_map_color_perlin(shape=(900,900),scale=50.0,octaves=5, persistence=0.5,lacunarity=2.0,seed=0,name='carte_couleur.png',hauteur_ocean=0,facteur_denivele=0.1,couleur_option='Réaliste')
@@ -33,3 +33,12 @@ def get_pos_grid(pos):
     x = posx // 30
     y = posy // 30
     return (x,y)
+
+def get_height_case(case,t):
+    x,y = case
+    somme = 0
+    for i in range(x*30):
+        for j in range(y*30):
+            somme += t[i][j]
+    return somme/900
+

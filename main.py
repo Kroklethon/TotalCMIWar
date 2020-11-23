@@ -15,6 +15,7 @@ var_lance_jeu = True
 sys.path.insert(var_pour_gen, '/gen_terrain')
 pygame.init()
 seed = functions.get_seed()
+t,shape = functions.create_noise_map(seed)
 functions.get_map_image(seed)
 screen = pygame.display.set_mode(main_var.size)
 
@@ -88,6 +89,7 @@ while var_lance_jeu == True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             position = pygame.mouse.get_pos()
             pos_grid = functions.get_pos_grid(position)
+            #print(get_height_case(pos_grid,t))
             print(pos_grid)
 
         #######################test pour le passer son tour#####################
