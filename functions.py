@@ -18,8 +18,3 @@ def drawGrid():
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
             creecase(var_pour_gen,x,y,tableau)
             
-def get_pos_grid(pos):
-    posx,posy = pos
-    x = posx // 30
-    y = posy // 30
-    return (x,y)

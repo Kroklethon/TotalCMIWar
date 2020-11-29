@@ -57,6 +57,8 @@ boutton_passer_tour=boutton.button((255,1,1),900,700,300,50,"passer tour")
 
 ###################################lanceur de jeu############################################################
 tour = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
+mode_selec=False
+personnage_a_action=0
 while var_lance_jeu == True:
     boutton_passer_tour.draw(screen, (1,200,0)) #dessine bouton fin de tour
     for event in pygame.event.get():
@@ -66,7 +68,7 @@ while var_lance_jeu == True:
     #info_jeu#
         position_sourie = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:        #quand le joeur clique
-            interraction.deplacer_combat(tour)          #programme qui gere le placecement et le combat
+            tab,mode_selec,personnage_a_action=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action)          #programme qui gere le placecement et le combat
             if boutton_passer_tour.isOver(position_sourie):
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour
     #info-jeu#
