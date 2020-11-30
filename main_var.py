@@ -6,8 +6,10 @@ white =(255,255,255)
 montagne =(179, 0, 0)
 joueur_1 =(230, 230, 0)
 joueur_2 =(0, 0, 179)
+
+#MAP
 shape=(900,900)
-scale=50.0
+scale=100.0
 octaves=5
 persistence=0.5
 lacunarity=2.0

@@ -1,9 +1,9 @@
 import random
 
-XMIN=0
-XMAX=29
-YMIN=0
-YMAX=29
+XMIN=1
+XMAX=30
+YMIN=1
+YMAX=30
 class Personne(object):
     def __init__(self,nom="John Doe",pv=100,pa=5):
         self.posx=random.randint(XMIN, XMAX)
