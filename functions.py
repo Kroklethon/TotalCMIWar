@@ -32,8 +32,8 @@ def get_map_image(game_seed):
 
 def get_pos_grid(pos):
     posx,posy = pos
-    x = posx // 30 + 1
-    y = posy // 30 + 1
+    x = posx // 30 
+    y = posy // 30
     return (x,y)
 
 def get_height_case(case,t):
@@ -42,6 +42,6 @@ def get_height_case(case,t):
     if x<31 and y<31:
         for i in range(30):
             for j in range(30):
-                val = (t[i*x][j*y])*100
+                val = (t[y*30 +i][x*30 +j])
                 somme += val
     return somme/900

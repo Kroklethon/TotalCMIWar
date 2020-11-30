@@ -25,9 +25,9 @@ tab = initialisation.cree_table()
 
 ###################################def personnage##############################################################
 Joueur1=ModulePersonne.Personne("evan")
-tab[Joueur1.posx][Joueur1.posy]=Joueur1.nom
+tab[Joueur1.posx][Joueur1.posy]="evan"
 Joueur2=ModulePersonne.Personne("aurelien")
-tab[Joueur2.posx][Joueur2.posy]=Joueur2.nom
+tab[Joueur2.posx][Joueur2.posy]="aurelien"
 joueurs=[Joueur1,Joueur2]
 ###################################def personnage##############################################################
 

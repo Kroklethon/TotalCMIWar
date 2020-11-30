@@ -1,9 +1,9 @@
 import random
 
-XMIN=1
-XMAX=30
-YMIN=1
-YMAX=30
+XMIN=0
+XMAX=29
+YMIN=0
+YMAX=29
 class Personne(object):
     def __init__(self,nom="John Doe",pv=100,pa=5):
         self.posx=random.randint(XMIN, XMAX)
@@ -14,9 +14,9 @@ class Personne(object):
         self.en_vie = True
 
     def dansPlateau(x, y):
-        return x >= XMIN and x <= XMAX and y >= YMIN and Y <= YMAX
+        return x >= XMIN and x <= XMAX and y >= YMIN and y <= YMAX
     
-    def position_random(self):
+    def position(self):
         self.posx=random.randint(XMIN, XMAX)
         self.posy=random.randint(YMIN, YMAX)
     def get_pos(self):
@@ -24,7 +24,7 @@ class Personne(object):
     def set_pos(self,posx,posy):
         (self.posx,self.posy)=(posx,posy)
     def position_affichage(self):
-        return "Position"+str(p.get_pos())
+        return "Position"+str(self.get_pos())
     def deplacement(self,dx,dy):
         if Personne.dansPlateau(self.posx, self.posy):
             self.posx=self.posx+dx

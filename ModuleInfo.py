@@ -1,11 +1,11 @@
 from ModulePersonne import Personne
 
 class Info(Personne):
-    def __init__(self,nom="Mark Zuckerberg",pv=110,pa=8,talent=135):
+    def __init__(self,nom="Mark Zuckerberg",pv=110,pa=8,programmation=135):
         super(Info, self).__init__(nom=nom, pv=pv, pa=pa)
-        self.talent = talent
+        self.programmation = programmation
     def information(self):
-        return super().information() + "le talent =" + str(self.talent)
+        return super().information() + "programmation =" + str(self.programmation)
 
 if __name__ == "__main__":
     persos = []
@@ -13,7 +13,7 @@ if __name__ == "__main__":
         if i%2 == 0:
             persos.append(Personne("Perso num " + str(i)))
         else:
-            persos.append(Info("Info " + str(i), pv=12+i, talent=120 + i+5))
+            persos.append(Info("Info " + str(i), pv=12+i, programmation=120 + i+5))
 
     for p in persos:
         print(p.information())

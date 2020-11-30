@@ -7,14 +7,14 @@ class Math(Personne):
     def information(self):
         return super().information() + " le matheu qi=" + str(self.qi)
 
-
 if __name__ == "__main__":
     persos = []
-    for i in range(10):
+    for i in range(100):
         if i%2 == 0:
             persos.append(Personne("Perso num " + str(i)))
         else:
-            persos.append(Math("Math num " + str(i), pv=12+i, qi=120 + i*10))
-
+            persos.append(Math("Math num " + str(i), pv=12+i, qi=120+2*i-2))
+    v=Math("josef")
     for p in persos:
-        print(p.information())
+        if p.peutattaquer(v):
+            print("Le perso " + p.information() + " peut attaquer " + v.information())
