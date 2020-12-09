@@ -6,6 +6,10 @@ import interraction
 import boutton
 import ModulePersonne
 import functions
+from ModuleGeosciences import Geosciences
+from ModuleInfo import Info
+from ModuleMath import Math
+from joueur import joueur
 ###################################importation###############################################################
 
 
@@ -24,25 +28,30 @@ tab = initialisation.cree_table()
 ###################################def variable##############################################################
 
 ###################################def personnage##############################################################
-Joueur1=ModulePersonne.Personne("evan")
-tab[Joueur1.posx][Joueur1.posy]="evan"
-Joueur2=ModulePersonne.Personne("aurelien")
-tab[Joueur2.posx][Joueur2.posy]="aurelien"
+# Joueur1=ModulePersonne.Personne("evan")
+# tab[Joueur1.posx][Joueur1.posy]="evan"
+# Joueur2=ModulePersonne.Personne("aurelien")
+# tab[Joueur2.posx][Joueur2.posy]="aurelien"
+Joueur1 = joueur()
+Joueur1.createClasse("info")
+Joueur2 = joueur()
+Joueur2.createClasse("math")
 joueurs=[Joueur1,Joueur2]
+functions.init_player(joueurs,tab)
 ###################################def personnage##############################################################
 
 print(tab)
 ###################################cree tableau##############################################################            
 def creecase(var_pour_gen, posx, posy,tableau,rect):
-	case_tabl = tableau[posx][posy]
-	if case_tabl == 'montagne' :
-		pygame.draw.rect(screen, main_var.montagne, rect, 0)
-	elif case_tabl == 'evan':
-		pygame.draw.rect(screen, main_var.joueur_1, rect, 0)
-	elif case_tabl == 'aurelien':
-		pygame.draw.rect(screen, main_var.joueur_2, rect, 0)
-	else:
-		pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
+    case_tabl = tableau[posx][posy]
+    if case_tabl == "montagne":
+        pygame.draw.rect(screen, main_var.montagne, rect, 0)
+    elif case_tabl in functions.list_name(Joueur1.getClasse()):
+        pygame.draw.rect(screen, main_var.joueur_1, rect, 0)
+    elif case_tabl in functions.list_name(Joueur2.getClasse()):
+        pygame.draw.rect(screen, main_var.joueur_2, rect, 0)
+    else:
+        pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
 def drawGrid():
     blockSize = 30 #Set the size of the grid block
     for x in range(blockSize):
@@ -69,23 +78,16 @@ while var_lance_jeu == True:
             var_lance_jeu = False 
             pygame.quit()
     #info_jeu#
-        position_sourie = pygame.mouse.get_pos()
+        position_souris = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:        #quand le joeur clique
             interraction.deplacer_combat(tour)          #programme qui gere le placecement et le combat
-            position = pygame.mouse.get_pos()
-            pos_grid = functions.get_pos_grid(position)
+            pos_grid = functions.get_pos_grid(position_souris)
             h = functions.get_height_case(pos_grid,tab_hauteur)
-            if h > 0:
-                print("Terre")
-            else:
-                print("Eau")
-            
-            print(h)
             print(pos_grid)
-            if boutton_passer_tour.isOver(position_sourie):
+            if boutton_passer_tour.isOver(position_souris):
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour
     #info-jeu#
-    if boutton_passer_tour.isOver(position_sourie):
+    if boutton_passer_tour.isOver(position_souris):
         boutton_passer_tour.draw(screen, (1,100,100)) #dessine bouton fin de tour
     screen.blit(background,(0,0))
     drawGrid()

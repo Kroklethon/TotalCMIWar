@@ -56,9 +56,9 @@ def liste_joueur_jouable(tour):
         """
         liste=[]
         if tour == True:
-                liste=["hugo","flo","evan"]
+                liste=["Evan","Flo","RomRom","Théo"]
         else:
-                liste=["aurelien","julien","lea"]
+                liste=["Aurélien","Simon","Julien","Léa"]
         return liste
 #deplacer_combat#############################################################################################################################       
 

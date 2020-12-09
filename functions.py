@@ -5,17 +5,16 @@ sys.path.insert(1, 'gen_terrain')
 import algorithmes
 import map_2D
 from random import randint
-def creecase(var_pour_gen, posx, posy,tableau):
+def creecase(var_pour_gen, posx, posy,tableau,rect):
 	case_tabl = tableau[posx][posy]
-	if case_tabl['statue'] == 'montagne' :
-		pygame.draw.rect(screen, main_var.montagne, rect, var_pour_gen)
-	elif case_tabl['statue'] == 'evan':
-		pygame.draw.rect(screen, main_var.joueur_1, rect, var_pour_gen)
-	elif case_tabl['statue'] == 'aurelien':
-		pygame.draw.rect(screen, main_var.joueur_2, rect, var_pour_gen)
+	if case_tabl == 'montagne' :
+		pygame.draw.rect(screen, main_var.montagne, rect, 0)
+	elif case_tabl in Joueur1.getClasse():
+		pygame.draw.rect(screen, main_var.joueur_1, rect, 0)
+	elif case_tabl in Joueur2.getClasse():
+		pygame.draw.rect(screen, main_var.joueur_2, rect, 0)
 	else:
 		pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
-
 
 def get_seed():
     seed = randint(0,100)
@@ -39,9 +38,27 @@ def get_pos_grid(pos):
 def get_height_case(case,t):
     x,y = case
     somme = 0
-    if x<31 and y<31:
+    if x<30 and y<30:
         for i in range(30):
             for j in range(30):
                 val = (t[y*30 +i][x*30 +j])
                 somme += val
     return somme/900
+
+def init_player(joueurs,tab):
+    print("init_player")
+    for joueur in joueurs:
+        print("boucle joueurs")
+        for perso in joueur.getClasse():
+            print("boucle perso")
+            print(perso.posx)
+            print(perso.posy)
+            print(perso.nom)
+            tab[perso.posx][perso.posy] = perso.nom
+
+def list_name(persos):
+    classe = []
+    for perso in persos:
+        classe.append(perso.nom)
+    return classe
+    
