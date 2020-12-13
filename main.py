@@ -64,17 +64,28 @@ def drawGrid():
 
 
 ###################################cree boutton##############################################################
-boutton_passer_tour=boutton.button((255,1,1),900,700,300,50,"Passer tour")
+boutton_passer_tour=boutton.button((255,1,1),915,715,270,50,"Passer tour")
+bouton=pygame.image.load("img/bouton1.png")
+bouton2=pygame.image.load("img/bouton2.png")
+bouton = pygame.transform.scale(bouton,(300,100))
+bouton2 = pygame.transform.scale(bouton2,(300,100))
 ###################################cree boutton##############################################################
 
 
-
-###################################lanceur de jeu############################################################
+###################################variable##################################################################
 tour = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
 mode_selec=False
 personnage_a_action=0
+font1 = pygame.font.Font(None, 36)
+varPA = 5
+###################################variable##################################################################
+
+###################################lanceur de jeu############################################################
 while var_lance_jeu == True:
     boutton_passer_tour.draw(screen, (1,200,0)) #dessine bouton fin de tour
+    screen.blit(bouton, (900,700))
+    text = font1.render(str(varPA), True, (255, 255, 255))
+    screen.blit(text, (900, 800))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             var_lance_jeu = False 
@@ -82,18 +93,24 @@ while var_lance_jeu == True:
     #info_jeu#
         position_souris = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:        #quand le joeur clique
-            tab,mode_selec,personnage_a_action=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action)
+            estdeplacer=False
+            if varPA > 0:
+                tab,mode_selec,personnage_a_action,estdeplacer=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action)
+            if estdeplacer==True:
+                varPA=varPA-1
             pos_grid = functions.get_pos_grid(position_souris)
             h = functions.get_height_case(pos_grid,tab_hauteur)
-            print(pos_grid)
             if boutton_passer_tour.isOver(position_souris):
+                varPA = 5
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour
     #info-jeu#
     if boutton_passer_tour.isOver(position_souris):
-        boutton_passer_tour.draw(screen, (1,100,100)) #dessine bouton fin de tour
+        screen.blit(bouton2, (900,700))
     screen.blit(background,(0,0))
     drawGrid()
     pygame.display.update()
+    text = font1.render(str(varPA), True, (0, 0, 0))
+    screen.blit(text, (900, 800))
 
 ###################################lanceur de jeu############################################################
 

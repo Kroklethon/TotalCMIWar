@@ -1,7 +1,6 @@
 import pygame
 import ModulePersonne
 
-
 def renvoi_selec(mode_selection):
         print('yy')
         print(mode_selection)
@@ -14,15 +13,16 @@ def deplacer_combat(tour,tableau,mode_selection,personnage_a_action):
         
         fonction de base qui vas géré les déplacement et le combat
         """
+        estdeplacer=False
         liste_tour=liste_joueur_jouable(tour)
         pos = pygame.mouse.get_pos()
         perso = selection_sourie(pos,tableau)
         print(mode_selection)
         if mode_selection == True:
-                tableau,mode_selection=interraction_selection(liste_tour,perso,personnage_a_action,tableau,mode_selection)
+                tableau,mode_selection,estdeplacer=interraction_selection(liste_tour,perso,personnage_a_action,tableau,mode_selection)
         else:
                 mode_selection,personnage_a_action=cree_selection(liste_tour,perso,mode_selection)
-        return tableau,mode_selection,personnage_a_action
+        return tableau,mode_selection,personnage_a_action,estdeplacer
 #interraction_selection###########################################
 def interraction_selection(liste_tour,perso,personnage_a_action,tableau,mode_selection):
         """
@@ -32,14 +32,19 @@ def interraction_selection(liste_tour,perso,personnage_a_action,tableau,mode_sel
                         personnage -> personnage en attente d'instruction
         fonction de base qui vas géré les déplacement et le combat 
         """
+        estdeplacer=False
+        print("perso cible:")
         print(perso)
-        if perso[0] != "vide" and perso[0] != "montagne":       #si on click sur un personnage
-                attaquer(perso,personnage_a_action)             #test attaque
-        if perso[0] == "vide":                                #si on click sur une case vide
-                tableau=deplacer(perso,personnage_a_action,tableau)             #test deplacer
-                                                                #si on click sur une case infranchissable
+        print("zone initiale:")
+        print(personnage_a_action)
+        if perso[1] - personnage_a_action[1] > -2 and perso[1] - personnage_a_action[1] < 2 and perso[2] - personnage_a_action[2] > -2 and perso[2] - personnage_a_action[2] < 2: #test si il ya pas plus d'une case de dif
+            if perso[0] != "vide" and perso[0] != "montagne":       #si on click sur un personnage
+                    attaquer(perso,personnage_a_action)             #test attaque
+            if perso[0] == "vide":                                #si on click sur une case vide
+                    tableau=deplacer(perso,personnage_a_action,tableau)             #test deplacer
+                    estdeplacer=True                                            #si on click sur une case infranchissable
         mode_selection = False
-        return tableau,mode_selection
+        return tableau,mode_selection,estdeplacer
 #cree_selection##########################################
 def cree_selection(liste_tour,perso,mode_selection):
         """
@@ -53,11 +58,10 @@ def cree_selection(liste_tour,perso,mode_selection):
         if perso[0] != "vide" and perso[0] != "montagne":       #si on a bien cliquer sur un personnage
                 if perso[0] in liste_tour:                  #si le nom est dans la lsite ( a son tour de jouer)
                         mode_selection=True
-                        print(mode_selection)
                         personnage_a_action=perso
-                        print('bite')
+                        #menu_de_droite.affiche_menu_droite(perso[0])
         return mode_selection,personnage_a_action
-#liste_joueur_jouable###########################################
+#liste_joueur_jouable######################################
 def liste_joueur_jouable(tour):
         """
         entrée/sortie:
@@ -91,6 +95,7 @@ def deplacer(tableau_perso,perso,tableau):
         print(perso[0])
         print(tableau_perso[0])
         print(tableau[tableau_perso[1]][tableau_perso[2]])
+
         return tableau
         #copier coller de l'autre fichier
 #combatre######################################################################################################################
@@ -102,6 +107,7 @@ def attaquer(defenseur,attaquant):
         fonction qui gère le combat 
         """
         #copier coller de l'autre fichier
+
 #interraction_selection######################################################################################################################
 
 def selection_sourie(pos,tableau):
