@@ -22,6 +22,8 @@ pygame.init()
 seed = functions.get_seed()
 tab_hauteur,shape,seed = functions.get_map_image(seed)
 screen = pygame.display.set_mode(main_var.size)
+color=(63, 34, 4)
+screen.fill(color)
 background = pygame.image.load("carte_couleur.png")
 
 tab = initialisation.cree_table()
@@ -67,8 +69,12 @@ def drawGrid():
 boutton_passer_tour=boutton.button((255,1,1),915,715,270,50,"Passer tour")
 bouton=pygame.image.load("img/bouton1.png")
 bouton2=pygame.image.load("img/bouton2.png")
-bouton = pygame.transform.scale(bouton,(300,100))
-bouton2 = pygame.transform.scale(bouton2,(300,100))
+boutonvarpa=pygame.image.load("img/boutonvarpa.png")
+menudroit=pygame.image.load("img/menudroit.png")
+bouton = pygame.transform.scale(bouton,(300,98))
+bouton2 = pygame.transform.scale(bouton2,(300,98))
+boutonvarpa=pygame.transform.scale(boutonvarpa,(300,100))
+menudroit=pygame.transform.scale(menudroit,(300,600))
 ###################################cree boutton##############################################################
 
 
@@ -76,16 +82,18 @@ bouton2 = pygame.transform.scale(bouton2,(300,100))
 tour = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
 mode_selec=False
 personnage_a_action=0
-font1 = pygame.font.Font(None, 36)
+font1 = pygame.font.Font(None, 70)
 varPA = 5
 ###################################variable##################################################################
 
 ###################################lanceur de jeu############################################################
 while var_lance_jeu == True:
+    screen.blit(boutonvarpa, (900,800))
+    screen.blit(menudroit, (900,1))
     boutton_passer_tour.draw(screen, (1,200,0)) #dessine bouton fin de tour
     screen.blit(bouton, (900,700))
     text = font1.render(str(varPA), True, (255, 255, 255))
-    screen.blit(text, (900, 800))
+    screen.blit(text, (975, 840))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             var_lance_jeu = False 
@@ -109,8 +117,5 @@ while var_lance_jeu == True:
     screen.blit(background,(0,0))
     drawGrid()
     pygame.display.update()
-    text = font1.render(str(varPA), True, (0, 0, 0))
-    screen.blit(text, (900, 800))
-
 ###################################lanceur de jeu############################################################
 
