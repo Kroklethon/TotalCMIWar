@@ -1,6 +1,6 @@
 import pygame
 import ModulePersonne
-
+import menu_de_droite
 def renvoi_selec(mode_selection):
         print('yy')
         print(mode_selection)
@@ -59,7 +59,7 @@ def cree_selection(liste_tour,perso,mode_selection):
                 if perso[0] in liste_tour:                  #si le nom est dans la lsite ( a son tour de jouer)
                         mode_selection=True
                         personnage_a_action=perso
-                        #menu_de_droite.affiche_menu_droite(perso[0])
+                        menu_de_droite.affiche_menu_droite(perso)
         return mode_selection,personnage_a_action
 #liste_joueur_jouable######################################
 def liste_joueur_jouable(tour):

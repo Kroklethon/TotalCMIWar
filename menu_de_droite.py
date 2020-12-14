@@ -2,7 +2,7 @@ import pygame
 import ModulePersonne
 
 
-def affiche_menu_droite(persopos):
+def affiche_menu_droite(perso):
 	"""
 	fonction qui affiche le menu avec tout les information sur un personnage
 	entrre:
