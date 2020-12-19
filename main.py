@@ -7,6 +7,7 @@ import boutton
 import ModulePersonne
 import functions
 import fondchargement
+import menuchoix
 from ModuleGeosciences import Geosciences
 from ModuleInfo import Info
 from ModuleMath import Math
@@ -27,15 +28,7 @@ tab = initialisation.cree_table()
 ###################################def variable##############################################################
 
 ###################################def personnage##############################################################
-# Joueur1=ModulePersonne.Personne("evan")
-# tab[Joueur1.posx][Joueur1.posy]="evan"
-# Joueur2=ModulePersonne.Personne("aurelien")
-# tab[Joueur2.posx][Joueur2.posy]="aurelien"
-Joueur1 = joueur()
-Joueur1.createClasse("info")
-Joueur2 = joueur()
-Joueur2.createClasse("math")
-joueurs=[Joueur1,Joueur2]
+joueurs=menuchoix.menujeu()
 functions.init_player(joueurs,tab)
 ###################################def personnage##############################################################
 
