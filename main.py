@@ -28,7 +28,21 @@ tab = initialisation.cree_table()
 ###################################def variable##############################################################
 
 ###################################def personnage##############################################################
-joueurs=menuchoix.menujeu()
+joueurchoix,var_lance_jeu=menuchoix.menujeu()
+
+Joueur1 = joueur.joueur()
+Joueur2 = joueur.joueur()
+
+if joueurchoix[0] == "info":
+    Joueur1= Joueur.createClasse("info")
+else:
+    Joueur1= Joueur.createClasse("math")
+if joueurchoix[1] == "info":
+    Joueur2= Joueur.createClasse("info")
+else:
+    Joueur2= Joueur.createClasse("math")
+
+joueurs=[Joueur1,Joueur2]
 functions.init_player(joueurs,tab)
 ###################################def personnage##############################################################
 
