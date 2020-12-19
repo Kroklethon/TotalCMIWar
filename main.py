@@ -6,21 +6,18 @@ import interraction
 import boutton
 import ModulePersonne
 import functions
+import fondchargement
 from ModuleGeosciences import Geosciences
 from ModuleInfo import Info
 from ModuleMath import Math
 from joueur import joueur
 ###################################importation###############################################################
-
-
-
+pygame.init()
 ###################################def variable##############################################################
 var_pour_gen = 1
 var_lance_jeu = True
-pygame.init()
 
-seed = functions.get_seed()
-tab_hauteur,shape,seed = functions.get_map_image(seed)
+tab_hauteur,shape,seed = fondchargement.loadjeu(True)
 screen = pygame.display.set_mode(main_var.size)
 color=(63, 34, 4)
 screen.fill(color)
@@ -77,7 +74,7 @@ boutonvarpa=pygame.transform.scale(boutonvarpa,(300,100))
 menudroit=pygame.transform.scale(menudroit,(300,600))
 ###################################cree boutton##############################################################
 
-
+pygame.font.init()
 ###################################variable##################################################################
 tour = True #variable qui definie qui peut jouer ici c'est au tour du joueur 1
 mode_selec=False
