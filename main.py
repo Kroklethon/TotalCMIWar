@@ -34,13 +34,13 @@ Joueur1 = joueur.joueur()
 Joueur2 = joueur.joueur()
 
 if joueurchoix[0] == "info":
-    Joueur1= Joueur.createClasse("info")
+    Joueur1= joueur.createClasse("info")
 else:
-    Joueur1= Joueur.createClasse("math")
+    Joueur1= joueur.createClasse("math")
 if joueurchoix[1] == "info":
-    Joueur2= Joueur.createClasse("info")
+    Joueur2= joueur.createClasse("info")
 else:
-    Joueur2= Joueur.createClasse("math")
+    Joueur2= joueur.createClasse("math")
 
 joueurs=[Joueur1,Joueur2]
 functions.init_player(joueurs,tab)

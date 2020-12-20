@@ -1,13 +1,12 @@
 import pygame
 import functions
 import boutton
-import joueur
 def menujeu():
         stop=True
         joueurs=["info","math"]
         continuer=True
         ecran = pygame.display.set_mode((900, 900))
-        background = pygame.image.load("img/fondmenu.jpg")
+        background=pygame.image.load("img/fondmenu.jpg")
         background=pygame.transform.scale(background,(900,900))
 
         #creation vrai bouton
