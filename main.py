@@ -1,4 +1,5 @@
 ###################################importation###############################################################
+import sys 
 import pygame
 import main_var
 import initialisation
@@ -19,28 +20,29 @@ var_pour_gen = 1
 var_lance_jeu = True
 
 tab_hauteur,shape,seed = fondchargement.loadjeu(True)
-screen = pygame.display.set_mode(main_var.size)
-color=(63, 34, 4)
-screen.fill(color)
-background = pygame.image.load("carte_couleur.png")
+
 
 tab = initialisation.cree_table()
 ###################################def variable##############################################################
 
 ###################################def personnage##############################################################
 joueurchoix,var_lance_jeu=menuchoix.menujeu()
+screen = pygame.display.set_mode(main_var.size)
+color=(63, 34, 4)
+screen.fill(color)
+background = pygame.image.load("carte_couleur.png")
 
-Joueur1 = joueur.joueur()
-Joueur2 = joueur.joueur()
+Joueur1 = joueur()
+Joueur2 = joueur()
 
 if joueurchoix[0] == "info":
-    Joueur1= joueur.createClasse("info")
+    Joueur1.createClasse("info")
 else:
-    Joueur1= joueur.createClasse("math")
+    Joueur1.createClasse("math")
 if joueurchoix[1] == "info":
-    Joueur2= joueur.createClasse("info")
+    Joueur2.createClasse("info")
 else:
-    Joueur2= joueur.createClasse("math")
+    Joueur2.createClasse("math")
 
 joueurs=[Joueur1,Joueur2]
 functions.init_player(joueurs,tab)
@@ -102,6 +104,8 @@ while var_lance_jeu == True:
         if event.type == pygame.QUIT:
             var_lance_jeu = False 
             pygame.quit()
+            sys.exit()
+            
     #info_jeu#
         position_souris = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:        #quand le joeur clique
@@ -112,6 +116,7 @@ while var_lance_jeu == True:
                 varPA=varPA-1
             pos_grid = functions.get_pos_grid(position_souris)
             h = functions.get_height_case(pos_grid,tab_hauteur)
+            print(h)
             if boutton_passer_tour.isOver(position_souris):
                 varPA = 5
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour

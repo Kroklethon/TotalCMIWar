@@ -25,7 +25,7 @@ def create_noise_map(game_seed):
     return t,shape
 
 def get_map_image(game_seed):
-    t, shape, seed =  map_2D.func_map_color_perlin(shape=(900,900),scale=100.0,octaves=5, persistence=0.5,lacunarity=2.0,seed=game_seed,name='carte_couleur.png',hauteur_ocean=0,facteur_denivele=0.1,couleur_option='Réaliste')
+    t, shape, seed =  map_2D.func_map_color_perlin(shape=(900,900),scale=300.0,octaves=5, persistence=0.5,lacunarity=2.0,seed=game_seed,name='carte_couleur.png',hauteur_ocean=0.013,facteur_denivele=0.1,couleur_option='Réaliste')
     print("Map créée")
     return t,shape,seed
 
@@ -41,7 +41,7 @@ def get_height_case(case,t):
     if x<30 and y<30:
         for i in range(30):
             for j in range(30):
-                val = (t[y*30 +i][x*30 +j])
+                val = (t[x*30 +i][y*30 +j])
                 somme += val
     return somme/900
 
