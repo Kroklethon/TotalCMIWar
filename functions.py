@@ -49,14 +49,8 @@ def is_water(case,t):
     return get_height_case(case,t) < -0.015
 
 def init_player(joueurs,tab):
-    print("init_player")
     for joueur in joueurs:
-        print("boucle joueurs")
         for perso in joueur.getClasse():
-            print("boucle perso")
-            print(perso.posx)
-            print(perso.posy)
-            print(perso.nom)
             tab[perso.posx][perso.posy] = perso.nom
 
 def list_name(persos):

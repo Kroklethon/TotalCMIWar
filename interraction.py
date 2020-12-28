@@ -92,9 +92,9 @@ def deplacer(tableau_perso,perso,tableau):
         """
         tableau[perso[1]][perso[2]]='vide'
         tableau[tableau_perso[1]][tableau_perso[2]]=perso[0]
-        print(perso[0])
-        print(tableau_perso[0])
-        print(tableau[tableau_perso[1]][tableau_perso[2]])
+        # print(perso[0])
+        # print(tableau_perso[0])
+        # print(tableau[tableau_perso[1]][tableau_perso[2]])
 
         return tableau
         #copier coller de l'autre fichier

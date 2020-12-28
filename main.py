@@ -48,7 +48,7 @@ joueurs=[Joueur1,Joueur2]
 functions.init_player(joueurs,tab)
 ###################################def personnage##############################################################
 
-print(tab)
+# print(tab)
 ###################################cree tableau##############################################################            
 def creecase(var_pour_gen, posx, posy,tableau,rect,pos_mouse,tab_hauteur,mode_selec):
     case_tabl = tableau[posx][posy]
