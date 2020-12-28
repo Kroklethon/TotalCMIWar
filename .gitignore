@@ -11,3 +11,5 @@ gen_terrain/__pycache__/outils.cpython-38.pyc
 *.pyc
 *.pyc
 __pycache__/boutton.cpython-39.pyc
+__pycache__/functions.cpython-39.pyc
+__pycache__/interraction.cpython-39.pyc

@@ -45,6 +45,9 @@ def get_height_case(case,t):
                 somme += val
     return somme/900
 
+def is_water(case,t):
+    return get_height_case(case,t) < -0.015
+
 def init_player(joueurs,tab):
     print("init_player")
     for joueur in joueurs:

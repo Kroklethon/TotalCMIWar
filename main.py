@@ -50,7 +50,7 @@ functions.init_player(joueurs,tab)
 
 print(tab)
 ###################################cree tableau##############################################################            
-def creecase(var_pour_gen, posx, posy,tableau,rect,pos_mouse):
+def creecase(var_pour_gen, posx, posy,tableau,rect,pos_mouse,tab_hauteur,mode_selec):
     case_tabl = tableau[posx][posy]
     x_mouse,y_mouse = pos_mouse
     if case_tabl == "montagne":
@@ -59,16 +59,16 @@ def creecase(var_pour_gen, posx, posy,tableau,rect,pos_mouse):
         pygame.draw.rect(screen, main_var.joueur_1, rect, 0)
     elif case_tabl in functions.list_name(Joueur2.getClasse()):
         pygame.draw.rect(screen, main_var.joueur_2, rect, 0)
-    elif posx == x_mouse and posy == y_mouse: 
+    elif posx == x_mouse and posy == y_mouse and functions.is_water(pos_mouse,tab_hauteur) and mode_selec: 
         pygame.draw.rect(screen, main_var.souris, rect, 0)
     else:
         pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
-def drawGrid(pos_mouse):
+def drawGrid(pos_mouse,tab_hauteur,mode_selec):
     blockSize = 30 #Set the size of the grid block
     for x in range(blockSize):
         for y in range(blockSize):
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
-            creecase(var_pour_gen,x,y,tab,rect,pos_mouse)
+            creecase(var_pour_gen,x,y,tab,rect,pos_mouse,tab_hauteur,mode_selec)
             
 
 ###################################cree tableau##############################################################
@@ -119,7 +119,6 @@ while var_lance_jeu == True:
                 varPA=varPA-1
             pos_grid = functions.get_pos_grid(position_souris)
             h = functions.get_height_case(pos_grid,tab_hauteur)
-            print(h)
             if boutton_passer_tour.isOver(position_souris):
                 varPA = 5
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour
@@ -127,7 +126,8 @@ while var_lance_jeu == True:
     if boutton_passer_tour.isOver(position_souris):
         screen.blit(bouton2, (900,700))
     screen.blit(background,(0,0))
-    drawGrid(functions.get_pos_grid(position_souris))
+    
+    drawGrid(functions.get_pos_grid(position_souris),tab_hauteur,mode_selec)
     pygame.display.update()
 ###################################lanceur de jeu############################################################
 
