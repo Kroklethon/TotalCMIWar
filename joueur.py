@@ -5,8 +5,10 @@ from ModuleMath import Math
 class joueur():
     def __init__(self):
         self.classe = []
+        self.type = ""
 
     def selectClasse(self,type):
+        self.type = type
         if type == "info":
             self.classe = self.createClasse("info")
         if type == "maths":
@@ -16,7 +18,9 @@ class joueur():
 
     def getClasse(self):
         return self.classe
-
+    def getType(self):
+        return self.type
+        
     def createClasse(self,type):
         print("createClasse")
         infos = ["Evan","Flo","RomRom","Théo"]

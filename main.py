@@ -45,7 +45,7 @@ else:
     Joueur2.createClasse("math")
 
 joueurs=[Joueur1,Joueur2]
-functions.init_player(joueurs,tab)
+functions.init_player(joueurs,tab,tab_hauteur)
 ###################################def personnage##############################################################
 
 # print(tab)
