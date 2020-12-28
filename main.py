@@ -50,22 +50,25 @@ functions.init_player(joueurs,tab)
 
 print(tab)
 ###################################cree tableau##############################################################            
-def creecase(var_pour_gen, posx, posy,tableau,rect):
+def creecase(var_pour_gen, posx, posy,tableau,rect,pos_mouse):
     case_tabl = tableau[posx][posy]
+    x_mouse,y_mouse = pos_mouse
     if case_tabl == "montagne":
         pygame.draw.rect(screen, main_var.montagne, rect, 0)
     elif case_tabl in functions.list_name(Joueur1.getClasse()):
         pygame.draw.rect(screen, main_var.joueur_1, rect, 0)
     elif case_tabl in functions.list_name(Joueur2.getClasse()):
         pygame.draw.rect(screen, main_var.joueur_2, rect, 0)
+    elif posx == x_mouse and posy == y_mouse: 
+        pygame.draw.rect(screen, main_var.souris, rect, 0)
     else:
         pygame.draw.rect(screen, main_var.white, rect, var_pour_gen)
-def drawGrid():
+def drawGrid(pos_mouse):
     blockSize = 30 #Set the size of the grid block
     for x in range(blockSize):
         for y in range(blockSize):
             rect = pygame.Rect(x*blockSize, y*blockSize, blockSize, blockSize)
-            creecase(var_pour_gen,x,y,tab,rect)
+            creecase(var_pour_gen,x,y,tab,rect,pos_mouse)
             
 
 ###################################cree tableau##############################################################
@@ -124,7 +127,7 @@ while var_lance_jeu == True:
     if boutton_passer_tour.isOver(position_souris):
         screen.blit(bouton2, (900,700))
     screen.blit(background,(0,0))
-    drawGrid()
+    drawGrid(functions.get_pos_grid(position_souris))
     pygame.display.update()
 ###################################lanceur de jeu############################################################
 

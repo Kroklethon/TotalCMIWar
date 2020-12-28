@@ -6,3 +6,8 @@ __pycache__/interraction.cpython-38.pyc
 gen_terrain/__pycache__/algorithmes.cpython-38.pyc
 gen_terrain/__pycache__/map_2D.cpython-38.pyc
 gen_terrain/__pycache__/outils.cpython-38.pyc
+*.xml
+*.iml
+*.pyc
+*.pyc
+__pycache__/boutton.cpython-39.pyc
