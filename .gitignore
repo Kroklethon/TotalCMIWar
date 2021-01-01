@@ -19,3 +19,5 @@ __pycache__/functions.cpython-39.pyc
 __pycache__/joueur.cpython-39.pyc
 __pycache__/ModulePersonne.cpython-39.pyc
 *.pyc
+__pycache__/functions.cpython-38.pyc
+__pycache__/ModulePersonne.cpython-38.pyc

@@ -51,11 +51,8 @@ def is_water(case,t):
 def init_player(joueurs,tab,tab_hauteur):
     for i in range(len(joueurs)):
         for perso in joueurs[i].getClasse():
-            while is_water((perso.posx,perso.posy),tab_hauteur):
-                if i == 0:
-                    perso.position(0,9,0,29)
-                else:
-                    perso.position(20,29,0,29)
+            while is_water((perso.posx,perso.posy),tab_hauteur) or not perso.good_pos(i):
+                perso.position(i)
             tab[perso.posx][perso.posy] = perso.nom
 
 def list_name(persos):

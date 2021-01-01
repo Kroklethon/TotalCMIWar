@@ -16,9 +16,23 @@ class Personne(object):
     def dansPlateau(x, y):
         return x >= XMIN and x <= XMAX and y >= YMIN and y <= YMAX
     
-    def position(self,xmin,xmax,ymin,ymax):
-        self.posx=random.randint(xmin, xmax)
-        self.posy=random.randint(ymin, ymax)
+    def position(self,index_joueur):
+        if index_joueur == 0:
+            self.posx=random.randint(0,8)
+            self.posy=random.randint(0, 29)
+        else: 
+            self.posx=random.randint(21,29)
+            self.posy=random.randint(0, 29)
+    def good_pos(self,index_joueur):
+        res = True
+        if index_joueur == 0:
+            if self.posx > 9:
+                res = False
+        else: 
+            if self.posx < 21:
+                res = False
+        return res 
+
     def get_pos(self):
         return (self.posx,self.posy)
     def set_pos(self,posx,posy):
