@@ -111,14 +111,15 @@ while var_lance_jeu == True:
             
     #info_jeu#
         position_souris = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONDOWN:        #quand le joeur clique
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos_grid = functions.get_pos_grid(position_souris)
+            estEau = functions.is_water(pos_grid,tab_hauteur)       #quand le joeur clique
             estdeplacer=False
             if varPA > 0:
-                tab,mode_selec,personnage_a_action,estdeplacer=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action)
+                tab,mode_selec,personnage_a_action,estdeplacer=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action,estEau)
             if estdeplacer==True:
                 varPA=varPA-1
-            pos_grid = functions.get_pos_grid(position_souris)
-            h = functions.get_height_case(pos_grid,tab_hauteur)
+            
             if boutton_passer_tour.isOver(position_souris):
                 varPA = 5
                 tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour

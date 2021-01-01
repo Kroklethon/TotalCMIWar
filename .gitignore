@@ -18,3 +18,4 @@ __pycache__/interraction.cpython-39.pyc
 __pycache__/functions.cpython-39.pyc
 __pycache__/joueur.cpython-39.pyc
 __pycache__/ModulePersonne.cpython-39.pyc
+*.pyc
