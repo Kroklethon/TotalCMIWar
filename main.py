@@ -9,6 +9,7 @@ import ModulePersonne
 import functions
 import fondchargement
 import menuchoix
+import menu_de_droite
 from ModuleGeosciences import Geosciences
 from ModuleInfo import Info
 from ModuleMath import Math
@@ -84,6 +85,7 @@ bouton = pygame.transform.scale(bouton,(300,98))
 bouton2 = pygame.transform.scale(bouton2,(300,98))
 boutonvarpa=pygame.transform.scale(boutonvarpa,(300,100))
 menudroit=pygame.transform.scale(menudroit,(300,600))
+
 ###################################cree boutton##############################################################
 
 pygame.font.init()
@@ -93,42 +95,83 @@ mode_selec=False
 personnage_a_action=0
 font1 = pygame.font.Font(None, 70)
 varPA = 5
+pion_selec = None
+peut_attaquer = True
+victoire = False
 ###################################variable##################################################################
 
 ###################################lanceur de jeu############################################################
 while var_lance_jeu == True:
-    screen.blit(boutonvarpa, (900,800))
-    screen.blit(menudroit, (900,1))
-    boutton_passer_tour.draw(screen, (1,200,0)) #dessine bouton fin de tour
-    screen.blit(bouton, (900,700))
-    text = font1.render(str(varPA), True, (255, 255, 255))
-    screen.blit(text, (975, 840))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            var_lance_jeu = False 
-            pygame.quit()
-            sys.exit()
+    for i in range(0,len(joueurs)):
+        if joueurs[i].nb_perso_morts == 4:
+            victoire = True
+            gagnant = i
+    if not victoire:        
+        if tour:
+            tour_str = "Joueur 1"
+        else:
+            tour_str = "Joueur 2"
+
+        font1 = pygame.font.Font(None, 70)
+        screen.blit(boutonvarpa, (900,800))
+        screen.blit(menudroit, (900,1))
+        boutton_passer_tour.draw(screen, (1,200,0)) #dessine bouton fin de tour
+        screen.blit(bouton, (900,700))
+        text = font1.render(str(varPA), True, (255, 255, 255))
+        screen.blit(text, (975, 840))
+        
+
+        for event in pygame.event.get():
             
-    #info_jeu#
-        position_souris = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pos_grid = functions.get_pos_grid(position_souris)
-            estEau = functions.is_water(pos_grid,tab_hauteur)       #quand le joeur clique
-            estdeplacer=False
-            if varPA > 0:
-                tab,mode_selec,personnage_a_action,estdeplacer=interraction.deplacer_combat(tour,tab,mode_selec,personnage_a_action,estEau)
-            if estdeplacer==True:
-                varPA=varPA-1
+            if event.type == pygame.QUIT:
+                var_lance_jeu = False 
+                pygame.quit()
+                sys.exit()
+                
+        #info_jeu#
+            position_souris = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos_grid = functions.get_pos_grid(position_souris)
+                estEau = functions.is_water(pos_grid,tab_hauteur)       #quand le joeur clique
+                estdeplacer=False
+                print(peut_attaquer)
+                if varPA <= 1:
+                    peut_attaquer = False
+                if varPA > 0:
+                    tab,mode_selec,personnage_a_action,estdeplacer,pion_selec ,a_attaque =interraction.deplacer_combat(joueurs,tour,tab,mode_selec,personnage_a_action,estEau,peut_attaquer)
+                if estdeplacer==True:
+                    varPA=varPA-1
+                if a_attaque and peut_attaquer:
+                    varPA -= 2
+                if boutton_passer_tour.isOver(position_souris):
+                    varPA = 5
+                    peut_attaquer = True
+                    tour=boutton.interaction_fin_de_tour(tour) 
+        if boutton_passer_tour.isOver(position_souris):
+            screen.blit(bouton2, (900,700)) 
+                    #programme qui gere l'interaction fin de tour
+        #info-jeu#
+        if pion_selec is not None:
             
-            if boutton_passer_tour.isOver(position_souris):
-                varPA = 5
-                tour=boutton.interaction_fin_de_tour(tour)      #programme qui gere l'interaction fin de tour
-    #info-jeu#
-    if boutton_passer_tour.isOver(position_souris):
-        screen.blit(bouton2, (900,700))
-    screen.blit(background,(0,0))
-    
-    drawGrid(functions.get_pos_grid(position_souris),tab_hauteur,mode_selec)
+            text = font1.render(str(pion_selec.nom), True, (255, 255, 255))
+            screen.blit(text, (950, 70))
+            PV = font1.render("PV = " + str(pion_selec.PV), True, (255, 255, 255))
+            screen.blit(PV, (950, 140))
+            PA = font1.render("PA = " + str(pion_selec.PA), True, (255, 255, 255))
+            screen.blit(PA, (950, 210))
+            # infos = font1.render(str(pion_selec.information()), True, (255, 255, 255))
+            # screen.blit(infos, (100, 280))
+        
+        screen.blit(background,(0,0))
+        tour_render = font1.render(tour_str, True, (255, 255, 255))
+        screen.blit(tour_render, (950, 600))
+        # varPA , tour = menu_de_droite.affiche_menu_droite(pion_selec,screen,varPA,tour) 
+        drawGrid(functions.get_pos_grid(position_souris),tab_hauteur,mode_selec)
+    else:
+        font1 = pygame.font.Font(None, 70)
+        text = font1.render("Victoire du Joueur " + str(gagnant+1), True, (255, 255, 255))
+        screen.blit(text, (400,450))
+
     pygame.display.update()
 ###################################lanceur de jeu############################################################
 

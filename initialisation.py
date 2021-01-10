@@ -5,8 +5,8 @@ def cree_table():
 
     crée le tableau vide correspondant au case du tableau
     """
-    tailletab = 31
-    tailleligne = 31
+    tailletab = 30 # 0..29 (31)
+    tailleligne = 30 # 0..29 (31)
     #####cration variable ######
     #tableau = []                   #TABLEAU ->
     #dico = {}                      #DICTIONNAIRE 
