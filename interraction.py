@@ -229,7 +229,7 @@ def attaquer(defenseur, attaquant,tableau,liste_tour , joueur_defenseur):
         else:
             print(defenseur.nom + " a rejoint ses ancetres")
             tableau[defenseur.posx][defenseur.posy] = 'vide'
-            joueur_defenseur.nb_perso_morts -= 1
+            joueur_defenseur.nb_perso_morts += 1
     else:
         a_attaque = False
         print("Les deux personnages sont dans la même équipe")
