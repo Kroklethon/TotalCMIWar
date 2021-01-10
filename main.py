@@ -194,11 +194,11 @@ while var_lance_jeu == True:
                     pygame.quit()
                     sys.exit()
 
-                # if event.key == pygame.K_RETURN:
-                #     var_lance_jeu = False 
-                #     pygame.quit()
-                #     os.system('python main.py')
-                #     sys.exit()
+                if event.key == pygame.K_RETURN:
+                    var_lance_jeu = False 
+                    pygame.quit()
+                    os.system('python main.py')
+                    sys.exit()
                     
 
 
