@@ -52,8 +52,11 @@ def init_player(joueurs,tab,tab_hauteur):
     for i in range(len(joueurs)):
         for perso in joueurs[i].getClasse():
             while is_water((perso.posx,perso.posy),tab_hauteur) or not perso.good_pos(i):
-                perso.position(i)
+                if tab[perso.posx][perso.posy] == "vide":
+                    perso.position(i)
             tab[perso.posx][perso.posy] = perso.nom
+            
+            
 
 def list_name(persos):
     classe = []
