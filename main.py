@@ -1,5 +1,6 @@
 ###################################importation###############################################################
 import sys 
+import os
 import pygame
 import main_var
 import initialisation
@@ -127,6 +128,10 @@ while var_lance_jeu == True:
                 var_lance_jeu = False 
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    victoire = True
+                    gagnant = 0
                 
         #info_jeu#
             position_souris = pygame.mouse.get_pos()
@@ -169,8 +174,34 @@ while var_lance_jeu == True:
         drawGrid(functions.get_pos_grid(position_souris),tab_hauteur,mode_selec)
     else:
         font1 = pygame.font.Font(None, 70)
-        text = font1.render("Victoire du Joueur " + str(gagnant+1), True, (255, 255, 255))
-        screen.blit(text, (400,450))
+        screen.fill(main_var.black)
+        victory = font1.render("Victoire du Joueur " + str(gagnant+1), True, (255, 255, 255))
+        screen.blit(victory, (375,450))
+        restart = font1.render("Appuyez sur Entrée pour rejouer", True, (255, 255, 255))
+        screen.blit(restart, (225,800))
+        leave = font1.render("Appuyez sur Echap pour quitter", True, (255, 255, 255))
+        screen.blit(leave, (225,850))
+        for event in pygame.event.get():
+            
+            if event.type == pygame.QUIT:
+                var_lance_jeu = False 
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    var_lance_jeu = False 
+                    pygame.quit()
+                    sys.exit()
+
+                # if event.key == pygame.K_RETURN:
+                #     var_lance_jeu = False 
+                #     pygame.quit()
+                #     os.system('python main.py')
+                #     sys.exit()
+                    
+
+
 
     pygame.display.update()
 ###################################lanceur de jeu############################################################
