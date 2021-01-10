@@ -112,7 +112,7 @@ while var_lance_jeu == True:
             tour_str = "Joueur 1"
         else:
             tour_str = "Joueur 2"
-
+        screen.fill(main_var.black)
         font1 = pygame.font.Font(None, 70)
         screen.blit(boutonvarpa, (900,800))
         screen.blit(menudroit, (900,1))
